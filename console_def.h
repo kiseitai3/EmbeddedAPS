@@ -4,6 +4,6 @@
 #define console_end() std_console_end()
 #else
 #define console_init(baud) std_console_init(baud)
-#define console(a) 
+#define console(a) {}
 #define console_end() std_console_end()
 #endif

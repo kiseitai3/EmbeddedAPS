@@ -21,6 +21,14 @@ void buffer_write(buffer_type& b, const String& data)
     {
       b.buff[i] = data[i];
     }
-    b.buff[data.length() + 1] = '\00';
+    b.buff[data.length()] = '\00';
+  }
+  else
+  {
+    for(size_t i = 0; i < b.s; i++)
+    {
+      b.buff[i] = data[i];
+    }
+    b.buff[b.s] = '\00';
   }
 }

@@ -6,6 +6,6 @@ typedef struct buffer_type
 {
   size_t s = 0;
   char* buff = nullptr;
-}buffer_type;
+}buffer_type, wireless_packet;
 
 #endif //STRUCTS_H_GUARD
