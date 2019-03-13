@@ -33,8 +33,10 @@
 
 //Input
 #define IO_BUTTONS
+#define IO_FS
 #define IO_SPIFFS
 #define IO_CONSOLE
+#define IO_SERIAL_BAUD 115200
 
 enum PINLAYOUT
 {
@@ -43,5 +45,8 @@ enum PINLAYOUT
   miso
 };
 
+
+//Debugging
+#define APS_VERBOSE
 
 #endif //CONFIG_H_GUARD

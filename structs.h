@@ -5,7 +5,7 @@
 typedef struct buffer_type
 {
   size_t s = 0;
-  byte* buff = nullptr;
-}buffer_type
+  char* buff = nullptr;
+}buffer_type;
 
 #endif //STRUCTS_H_GUARD
