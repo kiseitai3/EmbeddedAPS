@@ -31,19 +31,33 @@ void _fs_init()
 
 bool _fs_open_file(const char* file_name, file_mode_t mode)
 {
+  String modeStr = "";
   _fs_file_close();//Close previous file
   switch (mode)
   {
     case file_mode_t::READ:
-      fh = SPIFFS.open(file_name, "r");
+    case file_mode_t::READ|file_mode_t::TEXT_MODE:
+      modeStr += "r";
       break;
+    case file_mode_t::READ|file_mode_t::BIN_MODE:
+      modeStr += "rb";
+      break;  
     case file_mode_t::WRITE_TRUNC:
-      fh = SPIFFS.open(file_name, "w");
+    case file_mode_t::WRITE_TRUNC|file_mode_t::TEXT_MODE:
+      modeStr += "w";
       break;
+    case file_mode_t::WRITE_TRUNC|file_mode_t::BIN_MODE:
+      modeStr += "wb";
+      break; 
     case file_mode_t::WRITE_APPEND:
-      fh = SPIFFS.open(file_name, "a");
+    case file_mode_t::WRITE_APPEND|file_mode_t::TEXT_MODE:
+      modeStr += "a";
       break;
+    case file_mode_t::WRITE_APPEND|file_mode_t::BIN_MODE:
+      modeStr += "ab";
+      break; 
   }
+  fh = SPIFFS.open(file_name, modeStr.c_str());
   if (fh)
   {
     console("File opened!");
@@ -74,6 +88,7 @@ bool _fs_create_file(const char* file_name, size_t s)
   {
     fh.write(0);
   }
+  _fs_file_close();
   return _fs_file_exists && (_fs_file_size() == s);
 }
 

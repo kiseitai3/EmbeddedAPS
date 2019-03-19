@@ -22,6 +22,11 @@ byte wireless_get_rssi()
   return _wireless_get_rssi();
 }
 
+float wireless_get_temperature()
+{
+  return _wireless_get_temperature();
+}
+
 #endif
 
 

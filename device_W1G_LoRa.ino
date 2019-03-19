@@ -63,4 +63,10 @@ byte _wireless_get_rssi()
   return lora_device.getRSSI();
 }
 
+float _wireless_get_temperature()
+{
+  console("W1GDevice library does not report the temperature")
+  return 0;
+}
+
 #endif

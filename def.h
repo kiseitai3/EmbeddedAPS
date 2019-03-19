@@ -8,7 +8,11 @@ typedef void* void_ptr;
 
 typedef enum file_mode_t
 {
-  READ, WRITE_TRUNC, WRITE_APPEND
+  READ = 0x01, 
+  WRITE_TRUNC = 0x02, 
+  WRITE_APPEND = 0x04,
+  BIN_MODE = 0x10,
+  TEXT_MODE = 0x20 
 }file_mode_t;
 
 #define wireless_destroy_packet(p) buffer_destroy(p)
