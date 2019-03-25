@@ -18,6 +18,7 @@
 
 //Pump drivers
 #define MEDTRONICS
+//#define OMNIPOD
 
 
 //Display drivers
@@ -78,6 +79,34 @@
 #define CLOCK_PERMANENT_TIME
 #define CLOCK_INTERNAL_UPDATE
 #define CLOCK_SCHEDULER
+
+//Encoding Algorithm
+#define ENCODING_TOOLS
+#ifdef MEDTRONICS
+#define ENCODING_4B6B
+#endif
+#ifdef OMNIPOD
+#define ENCODING_MANCHESTER
+#endif
+
+//CRC Settings
+#define CRC
+#define CRC_8
+#define CRC_16
+
+#if defined(CRC) || defined(CRC_FAST)
+enum CRC_POLYNOMIALS
+{
+  MEDTRONICS_8 = 0x9B,
+  MEDTRONICS_16 = 0x1021
+};
+#endif
+
+//Further CRC settings depending on target device
+#ifdef MEDTRONICS && (defined(CRC) || defined(CRC_FAST))
+#define CRC_8_POLYNOMIAL CRC_POLYNOMIALS::MEDTRONICS_8
+#define CRC_16_POLYNOMIAL CRC_POLYNOMIALS::MEDTRONICS_16
+#endif
 
 enum PINLAYOUT
 {
